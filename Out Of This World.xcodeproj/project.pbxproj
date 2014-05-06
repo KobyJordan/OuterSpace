@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B244CFC519176B8F00B11282 /* Pluto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B244CFC419176B8F00B11282 /* Pluto.jpg */; };
 		B2DDE6371916248B006CC5FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DDE6361916248B006CC5FC /* Foundation.framework */; };
 		B2DDE6391916248B006CC5FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DDE6381916248B006CC5FC /* CoreGraphics.framework */; };
 		B2DDE63B1916248B006CC5FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DDE63A1916248B006CC5FC /* UIKit.framework */; };
@@ -33,6 +34,7 @@
 		B2DDE6831916357C006CC5FC /* Uranus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2DDE6791916357C006CC5FC /* Uranus.jpg */; };
 		B2DDE6841916357C006CC5FC /* Venus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2DDE67A1916357C006CC5FC /* Venus.jpg */; };
 		B2DDE68919163608006CC5FC /* KJSpaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DDE68819163608006CC5FC /* KJSpaceObject.m */; };
+		B2FA420E1918E764009354CC /* KJSpaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA420D1918E764009354CC /* KJSpaceImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B244CFC419176B8F00B11282 /* Pluto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Pluto.jpg; sourceTree = "<group>"; };
 		B2DDE6331916248B006CC5FC /* Out Of This World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Out Of This World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2DDE6361916248B006CC5FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2DDE6381916248B006CC5FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -79,6 +82,8 @@
 		B2DDE67A1916357C006CC5FC /* Venus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Venus.jpg; sourceTree = "<group>"; };
 		B2DDE68719163608006CC5FC /* KJSpaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSpaceObject.h; sourceTree = "<group>"; };
 		B2DDE68819163608006CC5FC /* KJSpaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJSpaceObject.m; sourceTree = "<group>"; };
+		B2FA420C1918E764009354CC /* KJSpaceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSpaceImageViewController.h; sourceTree = "<group>"; };
+		B2FA420D1918E764009354CC /* KJSpaceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJSpaceImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +150,8 @@
 				B2DDE66C1916250C006CC5FC /* KJOuterSpaceTableViewController.m */,
 				B2DDE68719163608006CC5FC /* KJSpaceObject.h */,
 				B2DDE68819163608006CC5FC /* KJSpaceObject.m */,
+				B2FA420C1918E764009354CC /* KJSpaceImageViewController.h */,
+				B2FA420D1918E764009354CC /* KJSpaceImageViewController.m */,
 				B2DDE64E1916248B006CC5FC /* Images.xcassets */,
 				B2DDE63D1916248B006CC5FC /* Supporting Files */,
 			);
@@ -195,6 +202,7 @@
 				B2DDE6791916357C006CC5FC /* Uranus.jpg */,
 				B2DDE67A1916357C006CC5FC /* Venus.jpg */,
 				B2DDE6771916357C006CC5FC /* Orion.jpg */,
+				B244CFC419176B8F00B11282 /* Pluto.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -285,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B244CFC519176B8F00B11282 /* Pluto.jpg in Resources */,
 				B2DDE67B1916357C006CC5FC /* Earth.jpg in Resources */,
 				B2DDE6841916357C006CC5FC /* Venus.jpg in Resources */,
 				B2DDE67F1916357C006CC5FC /* Mercury.jpg in Resources */,
@@ -316,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2FA420E1918E764009354CC /* KJSpaceImageViewController.m in Sources */,
 				B2DDE68919163608006CC5FC /* KJSpaceObject.m in Sources */,
 				B2DDE6431916248B006CC5FC /* main.m in Sources */,
 				B2DDE66D1916250C006CC5FC /* KJOuterSpaceTableViewController.m in Sources */,
@@ -402,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -434,7 +444,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -525,6 +535,7 @@
 				B2DDE6671916248B006CC5FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2DDE6681916248B006CC5FC /* Build configuration list for PBXNativeTarget "Out Of This WorldTests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +544,7 @@
 				B2DDE66A1916248B006CC5FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

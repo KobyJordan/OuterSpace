@@ -7,6 +7,8 @@
 //
 
 #import "KJOuterSpaceTableViewController.h"
+#import "AstronomicalData.h"
+#import "KJSpaceObject.h"
 
 @interface KJOuterSpaceTableViewController ()
 
@@ -35,25 +37,15 @@
     
     self.planets = [[NSMutableArray alloc] init];
     
-    NSString *planet1 = @"Mercury";
-    NSString *planet2 = @"Venus";
-    NSString *planet3 = @"Earth";
-    NSString *planet4 = @"Mars";
-    NSString *planet5 = @"Jupiter";
-    NSString *planet6 = @"Saturn";
-    NSString *planet7 = @"Uranus";
-    NSString *planet8 = @"Neptune";
-    NSString *planet9 = @"Pluto";
+
+    for (NSMutableDictionary *planetData in[AstronomicalData allKnownPlanets])
+    {
+        NSString *imageName = [NSString stringWithFormat:@"%@.jpg", planetData[PLANET_NAME]];
+        KJSpaceObject *planet = [[KJSpaceObject alloc] initWithData:planetData andImage:[UIImage imageNamed: imageName]];
+        [self.planets addObject:planet];
+    }
     
-    [self.planets addObject:planet1];
-    [self.planets addObject:planet2];
-    [self.planets addObject:planet3];
-    [self.planets addObject:planet4];
-    [self.planets addObject:planet5];
-    [self.planets addObject:planet6];
-    [self.planets addObject:planet7];
-    [self.planets addObject:planet8];
-    [self.planets addObject:planet9];
+    
     
 //    NSMutableDictionary *myDictionary = [[NSMutableDictionary alloc] init];
 //    NSString *firstColor = @"red";
@@ -71,6 +63,8 @@
     NSLog(@"%@", myNumber);
     NSNumber *floatNumber = [NSNumber numberWithFloat:3.14];
     NSLog(@"%@", floatNumber);
+    
+    
     
 
 }
@@ -106,17 +100,13 @@
     
     // Configure the cell...
     
-    cell.textLabel.text = [self.planets objectAtIndexedSubscript:indexPath.row];
-    if (indexPath.section == 0 )
-    {
-        cell.backgroundColor = [UIColor redColor];
-        cell.textLabel.textColor = [UIColor whiteColor];
-    }
-    else{
-        cell.backgroundColor = [UIColor blackColor];
-        cell.textLabel.textColor = [UIColor whiteColor];
-    }
-    
+    KJSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
+    cell.textLabel.text = planet.name;
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.text = planet.nickname;
+    cell.imageView.image = planet.spaceImage;
+    cell.backgroundColor = [UIColor clearColor];
+    cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
     return cell;
 }
