@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KJSpaceObject.h"
 
 @interface KJSpaceImageViewController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) KJSpaceObject *spaceObject;
 
 @end

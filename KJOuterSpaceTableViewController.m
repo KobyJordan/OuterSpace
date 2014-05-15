@@ -9,6 +9,7 @@
 #import "KJOuterSpaceTableViewController.h"
 #import "AstronomicalData.h"
 #import "KJSpaceObject.h"
+#import "KJSpaceImageViewController.h"
 
 @interface KJOuterSpaceTableViewController ()
 
@@ -45,6 +46,7 @@
         [self.planets addObject:planet];
     }
     
+
     
     
 //    NSMutableDictionary *myDictionary = [[NSMutableDictionary alloc] init];
@@ -59,14 +61,28 @@
 
 
     
-    NSNumber *myNumber = [NSNumber numberWithInt:5];
-    NSLog(@"%@", myNumber);
-    NSNumber *floatNumber = [NSNumber numberWithFloat:3.14];
-    NSLog(@"%@", floatNumber);
+//    NSNumber *myNumber = [NSNumber numberWithInt:5];
+//    NSLog(@"%@", myNumber);
+//    NSNumber *floatNumber = [NSNumber numberWithFloat:3.14];
+//    NSLog(@"%@", floatNumber);
     
     
     
 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([sender isKindOfClass:[UITableViewCell class]])
+    {
+        if ([segue.destinationViewController isKindOfClass:[KJSpaceImageViewController class]])
+        {
+            KJSpaceImageViewController *nextViewController = segue.destinationViewController;
+            NSIndexPath *path = [self.tableView indexPathForCell:sender];
+            KJSpaceObject *selectedObject = self.planets[path.row];
+            nextViewController.spaceObject = selectedObject;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
