@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B244CFC519176B8F00B11282 /* Pluto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B244CFC419176B8F00B11282 /* Pluto.jpg */; };
+		B2C6BF8219246CD000EEAA29 /* KJSpaceDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C6BF8119246CD000EEAA29 /* KJSpaceDataViewController.m */; };
 		B2DDE6371916248B006CC5FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DDE6361916248B006CC5FC /* Foundation.framework */; };
 		B2DDE6391916248B006CC5FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DDE6381916248B006CC5FC /* CoreGraphics.framework */; };
 		B2DDE63B1916248B006CC5FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DDE63A1916248B006CC5FC /* UIKit.framework */; };
@@ -49,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		B244CFC419176B8F00B11282 /* Pluto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Pluto.jpg; sourceTree = "<group>"; };
+		B2C6BF8019246CD000EEAA29 /* KJSpaceDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSpaceDataViewController.h; sourceTree = "<group>"; };
+		B2C6BF8119246CD000EEAA29 /* KJSpaceDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJSpaceDataViewController.m; sourceTree = "<group>"; };
 		B2DDE6331916248B006CC5FC /* Out Of This World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Out Of This World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2DDE6361916248B006CC5FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2DDE6381916248B006CC5FC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -146,6 +149,8 @@
 				B2DDE6451916248B006CC5FC /* KJAppDelegate.h */,
 				B2DDE6461916248B006CC5FC /* KJAppDelegate.m */,
 				B2DDE6481916248B006CC5FC /* Main.storyboard */,
+				B2C6BF8019246CD000EEAA29 /* KJSpaceDataViewController.h */,
+				B2C6BF8119246CD000EEAA29 /* KJSpaceDataViewController.m */,
 				B2DDE66B1916250C006CC5FC /* KJOuterSpaceTableViewController.h */,
 				B2DDE66C1916250C006CC5FC /* KJOuterSpaceTableViewController.m */,
 				B2DDE68719163608006CC5FC /* KJSpaceObject.h */,
@@ -331,6 +336,7 @@
 				B2DDE66D1916250C006CC5FC /* KJOuterSpaceTableViewController.m in Sources */,
 				B2DDE6471916248B006CC5FC /* KJAppDelegate.m in Sources */,
 				B2DDE67019162FEE006CC5FC /* AstronomicalData.m in Sources */,
+				B2C6BF8219246CD000EEAA29 /* KJSpaceDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
