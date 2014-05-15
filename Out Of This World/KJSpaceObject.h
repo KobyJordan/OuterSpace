@@ -17,7 +17,7 @@
 @property (nonatomic) float yearLength;
 @property (nonatomic) float dayLength;
 @property (nonatomic) float temperature;
-@property (nonatomic) float numberOfMoons;
+@property (nonatomic) int numberOfMoons;
 @property (strong, nonatomic) NSString *nickname;
 @property (strong, nonatomic) NSString *interestFact;
 @property (strong, nonatomic) UIImage *spaceImage;

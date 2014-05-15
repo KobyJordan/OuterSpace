@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KJSpaceObject.h"
 
 @interface KJSpaceDataViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) KJSpaceObject *spaceObject;
 
 @end

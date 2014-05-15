@@ -10,6 +10,7 @@
 #import "AstronomicalData.h"
 #import "KJSpaceObject.h"
 #import "KJSpaceImageViewController.h"
+#import "KJSpaceDataViewController.h"
 
 @interface KJOuterSpaceTableViewController ()
 
@@ -83,6 +84,16 @@
             nextViewController.spaceObject = selectedObject;
         }
     }
+    if ([sender isKindOfClass:[NSIndexPath class]])
+    {
+        if ([segue.destinationViewController isKindOfClass:[KJSpaceDataViewController class]])
+        {
+            KJSpaceDataViewController *targetViewController = segue.destinationViewController;
+            NSIndexPath *path = sender;
+            KJSpaceObject *selectedObject = self.planets[path.row];
+            targetViewController.spaceObject = selectedObject;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,6 +138,13 @@
     return cell;
 }
 
+
+#pragma mark UITableView Delegate
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"push to space data" sender:indexPath];
+}
 
 /*
 // Override to support conditional editing of the table view.
