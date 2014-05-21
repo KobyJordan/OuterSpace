@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B230A5101926FF2700B0DBF6 /* KJAddSpaceObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B230A50F1926FF2700B0DBF6 /* KJAddSpaceObjectViewController.m */; };
 		B244CFC519176B8F00B11282 /* Pluto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B244CFC419176B8F00B11282 /* Pluto.jpg */; };
 		B2C6BF8219246CD000EEAA29 /* KJSpaceDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C6BF8119246CD000EEAA29 /* KJSpaceDataViewController.m */; };
 		B2DDE6371916248B006CC5FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2DDE6361916248B006CC5FC /* Foundation.framework */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B230A50E1926FF2700B0DBF6 /* KJAddSpaceObjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJAddSpaceObjectViewController.h; sourceTree = "<group>"; };
+		B230A50F1926FF2700B0DBF6 /* KJAddSpaceObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJAddSpaceObjectViewController.m; sourceTree = "<group>"; };
 		B244CFC419176B8F00B11282 /* Pluto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Pluto.jpg; sourceTree = "<group>"; };
 		B2C6BF8019246CD000EEAA29 /* KJSpaceDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSpaceDataViewController.h; sourceTree = "<group>"; };
 		B2C6BF8119246CD000EEAA29 /* KJSpaceDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJSpaceDataViewController.m; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				B2DDE6451916248B006CC5FC /* KJAppDelegate.h */,
 				B2DDE6461916248B006CC5FC /* KJAppDelegate.m */,
 				B2DDE6481916248B006CC5FC /* Main.storyboard */,
+				B230A50E1926FF2700B0DBF6 /* KJAddSpaceObjectViewController.h */,
+				B230A50F1926FF2700B0DBF6 /* KJAddSpaceObjectViewController.m */,
 				B2C6BF8019246CD000EEAA29 /* KJSpaceDataViewController.h */,
 				B2C6BF8119246CD000EEAA29 /* KJSpaceDataViewController.m */,
 				B2DDE66B1916250C006CC5FC /* KJOuterSpaceTableViewController.h */,
@@ -336,6 +341,7 @@
 				B2DDE66D1916250C006CC5FC /* KJOuterSpaceTableViewController.m in Sources */,
 				B2DDE6471916248B006CC5FC /* KJAppDelegate.m in Sources */,
 				B2DDE67019162FEE006CC5FC /* AstronomicalData.m in Sources */,
+				B230A5101926FF2700B0DBF6 /* KJAddSpaceObjectViewController.m in Sources */,
 				B2C6BF8219246CD000EEAA29 /* KJSpaceDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

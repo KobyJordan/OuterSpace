@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KJAddSpaceObjectViewController.h"
 
-@interface KJOuterSpaceTableViewController : UITableViewController
+@interface KJOuterSpaceTableViewController : UITableViewController <KJAddSpaceObjectViewControllerDelegate>
+
 
 @property (strong, nonatomic) NSMutableArray *planets;
-
+@property (strong, nonatomic) NSMutableArray *addedSpaceObjects;
 
 
 @end

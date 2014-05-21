@@ -18,6 +18,28 @@
 
 @implementation KJOuterSpaceTableViewController
 
+#define ADDED_SPACE_OBJECTS_KEY @"Added Space Objects Array"
+
+#pragma mark - Lazy Instantiation of Properties
+
+-(NSMutableArray *)planets
+{
+    if (!_planets)
+    {
+        _planets = [[NSMutableArray alloc] init];
+    }
+    return _planets;
+}
+
+-(NSMutableArray *)addedSpaceObjects
+{
+    if (!_addedSpaceObjects)
+    {
+        _addedSpaceObjects = [[NSMutableArray alloc] init];
+    }
+    return _addedSpaceObjects;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -37,7 +59,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.planets = [[NSMutableArray alloc] init];
+    
     
 
     for (NSMutableDictionary *planetData in[AstronomicalData allKnownPlanets])
@@ -47,9 +69,15 @@
         [self.planets addObject:planet];
     }
     
-
-    
-    
+    NSArray *myPlanetsAsPropertyLists = [[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_SPACE_OBJECTS_KEY];
+    for (NSDictionary *dictionary in myPlanetsAsPropertyLists)
+    {
+        KJSpaceObject *spaceObject = [self spaceObjectForDictionary:dictionary];
+        
+        [self.addedSpaceObjects addObject:spaceObject];
+    }
+        
+        
 //    NSMutableDictionary *myDictionary = [[NSMutableDictionary alloc] init];
 //    NSString *firstColor = @"red";
 //    [myDictionary setObject:firstColor forKey:@"Firetruck Colour"];
@@ -80,19 +108,56 @@
         {
             KJSpaceImageViewController *nextViewController = segue.destinationViewController;
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
-            KJSpaceObject *selectedObject = self.planets[path.row];
+            KJSpaceObject *selectedObject;
+            
+            
+            if (path.section ==0)
+            {
+                selectedObject = self.planets[path.row];
+            }
+            
+            else if (path.section ==1)
+            {
+                selectedObject = self.addedSpaceObjects[path.row];
+            }
+            
             nextViewController.spaceObject = selectedObject;
         }
     }
+    
+    
+    
+    
     if ([sender isKindOfClass:[NSIndexPath class]])
     {
         if ([segue.destinationViewController isKindOfClass:[KJSpaceDataViewController class]])
         {
             KJSpaceDataViewController *targetViewController = segue.destinationViewController;
             NSIndexPath *path = sender;
-            KJSpaceObject *selectedObject = self.planets[path.row];
+            KJSpaceObject *selectedObject;
+            
+                if (path.section == 0)
+                {
+                    selectedObject = self.planets[path.row];
+                }
+            
+            
+            else if (path.section ==1)
+            {
+                selectedObject = self.addedSpaceObjects[path.row];
+            }
+            
+            
             targetViewController.spaceObject = selectedObject;
         }
+    }
+    
+    
+    
+    if ([segue.destinationViewController isKindOfClass:[KJAddSpaceObjectViewController class]])
+    {
+        KJAddSpaceObjectViewController *addSpaceObjectVC = segue.destinationViewController;
+        addSpaceObjectVC.delegate = self;
     }
 }
 
@@ -102,14 +167,72 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - KJAddSpaceObjectViewController Delegate
+
+-(void)didCancel
+{
+    NSLog(@"didCancel");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)addSpaceObject:(KJSpaceObject *)spaceObject
+
+{
+    [self.addedSpaceObjects addObject:spaceObject];
+    
+    //will save to NSUserDefaults here
+    
+    NSMutableArray *spaceObjectsAsProperyLists = [[[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_SPACE_OBJECTS_KEY] mutableCopy];
+    if (!spaceObjectsAsProperyLists) spaceObjectsAsProperyLists = [[NSMutableArray alloc] init];
+    
+    [spaceObjectsAsProperyLists addObject:[self spaceObjectAsAPropertyList:spaceObject]];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:spaceObjectsAsProperyLists forKey:ADDED_SPACE_OBJECTS_KEY];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - Helper Methods
+
+-(NSDictionary *)spaceObjectAsAPropertyList:(KJSpaceObject *)spaceObject
+
+{
+    NSData *imageData = UIImagePNGRepresentation(spaceObject.spaceImage);
+    NSDictionary *dictionary = @{PLANET_NAME : spaceObject.name, PLANET_GRAVITY : @(spaceObject.gravitationalForce), PLANET_DIAMETER : @(spaceObject.diameter), PLANET_YEAR_LENGTH : @(spaceObject.yearLength), PLANET_DAY_LENGTH : @(spaceObject.dayLength), PLANET_TEMPERATURE : @(spaceObject.temperature), PLANET_NUMBER_OF_MOONS : @(spaceObject.numberOfMoons), PLANET_NICKNAME : spaceObject.nickname, PLANET_INTERESTING_FACT : spaceObject.interestFact, PLANET_IMAGE : imageData};
+    
+    return dictionary;
+}
+
+
+-(KJSpaceObject *)spaceObjectForDictionary: (NSDictionary *)dictionary
+{
+    NSData *dataForImage = dictionary[PLANET_IMAGE];
+    UIImage *spaceObjectImage = [UIImage imageWithData:dataForImage];
+    KJSpaceObject *spaceObject = [[KJSpaceObject alloc] initWithData:dictionary andImage:spaceObjectImage];
+    
+    return spaceObject;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
     
+    
+    if ([self.addedSpaceObjects count])
+    {
+        return 2;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -117,8 +240,17 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     
-    return [self.planets count];
+    if (section ==1)
+    {
+        return [self.addedSpaceObjects count];
+    }
+    
+    else
+    {
+        return [self.planets count];
+    }
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -127,12 +259,28 @@
     
     // Configure the cell...
     
-    KJSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
-    cell.textLabel.text = planet.name;
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.detailTextLabel.text = planet.nickname;
-    cell.imageView.image = planet.spaceImage;
+    if (indexPath.section == 1)
+    
+    {
+        //use new Space object to customize cell
+        KJSpaceObject *planet = [self.addedSpaceObjects objectAtIndex:indexPath.row];
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickname;
+        cell.imageView.image = planet.spaceImage;
+    }
+    else
+    {
+        
+    
+        
+        
+        KJSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickname;
+        cell.imageView.image = planet.spaceImage;
+    }
     cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
     return cell;
@@ -146,27 +294,53 @@
     [self performSegueWithIdentifier:@"push to space data" sender:indexPath];
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    
+    if (indexPath.section == 1) return YES;
+    else return NO;
+   
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.addedSpaceObjects removeObjectAtIndex:indexPath.row];
+        
+        NSMutableArray *newSavedSpaceObjectData = [[NSMutableArray alloc] init];
+        
+        for (KJSpaceObject *spaceObject in self.addedSpaceObjects)
+        {
+            [newSavedSpaceObjectData addObject:[self spaceObjectAsAPropertyList:spaceObject]];
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:newSavedSpaceObjectData forKey:ADDED_SPACE_OBJECTS_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //work around for app crashing when deleting tableViewCells because it's a giant weeping vagina!!!!
+        
+        if (newSavedSpaceObjectData.count >0 )
+        
+        {
+            
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else {
+            [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+        }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        
+        }
+
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
